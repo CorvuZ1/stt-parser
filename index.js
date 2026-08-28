@@ -30,9 +30,13 @@ const testCases = [
   { text: "спасибо до свидания", expected: INTENTS.UNCLEAR },
 ];
 
+let successCount = 0;
+
 for (const testCase of testCases) {
   const result = parse(testCase.text);
   const isSuccess = testCase.expected === result.intent;
+
+  if (isSuccess) successCount++;
 
   console.log(`
     Текст: ${testCase.text}
@@ -41,3 +45,5 @@ for (const testCase of testCases) {
     Статус: ${isSuccess ? "Успех" : "Провал"}
   `);
 }
+
+console.log(`${successCount} / ${testCases.length}`);
